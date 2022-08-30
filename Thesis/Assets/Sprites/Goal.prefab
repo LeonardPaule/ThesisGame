@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8013888141688106257}
   - component: {fileID: 8013888141688106256}
   - component: {fileID: 8013888141688106259}
-  - component: {fileID: 4253843064310343927}
+  - component: {fileID: 5685288427992561471}
   m_Layer: 0
   m_Name: starGoal
   m_TagString: Finish
@@ -274,7 +274,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4253843064310343927
+--- !u!114 &5685288427992561471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,6 +283,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8013888141688106261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d0f2ea8735c3e42ad251d58ea1e011, type: 3}
+  m_Script: {fileID: 11500000, guid: 9626d885205166c47a4ed2aa6552984e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -8,7 +8,7 @@ public class CoinCounter : MonoBehaviour
     public static CoinCounter instance;
     public TextMeshProUGUI text;
 
-    int score = 0;
+    public static int score = 0;
 
     void Start()
     {
@@ -16,6 +16,7 @@ public class CoinCounter : MonoBehaviour
         {
             instance = this;
         }
+        score = 0;
     }
     public void ChangeScore(int coinValue)
     {
@@ -23,7 +24,7 @@ public class CoinCounter : MonoBehaviour
         score += coinValue;
         text.text = "= " + score.ToString();
 
-        print("Score: " + score);
+        
 
     }
 

@@ -71,7 +71,6 @@ public class PlayerControl : MonoBehaviour
         {
             Player.transform.position = StartingPos.transform.position;
             _rigidbody.velocity = new Vector2(0, 0);
-            print("Ouch");
 
         }
         if (collision.gameObject.tag == "Coin")
@@ -91,7 +90,6 @@ public class PlayerControl : MonoBehaviour
         {
             Player.transform.position = StartingPos.transform.position;
             _rigidbody.velocity = new Vector2(0, 0);
-            print("You Fell");
 
         }
 

@@ -9,7 +9,7 @@ public class CoinCounter : MonoBehaviour
     public TextMeshProUGUI text;
 
     public static int score = 0;
-
+    public AudioSource coinSound;
     void Start()
     {
         if (instance == null)
@@ -22,6 +22,9 @@ public class CoinCounter : MonoBehaviour
     {
 
         score += coinValue;
+
+        coinSound.Play();
+
         text.text = "= " + score.ToString();
 
         

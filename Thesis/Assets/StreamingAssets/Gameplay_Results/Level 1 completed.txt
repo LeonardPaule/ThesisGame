@@ -1,0 +1,6 @@
+Level 1 completed
+
+Time: 35 seconds
+Coins: 45 collected
+Deaths: 0 times
+

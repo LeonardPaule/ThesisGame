@@ -1,0 +1,6 @@
+Level 2 completed
+
+Time: 58 seconds
+Coins: 44 collected
+Deaths: 1 times
+

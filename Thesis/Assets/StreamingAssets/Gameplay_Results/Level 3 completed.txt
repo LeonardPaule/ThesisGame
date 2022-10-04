@@ -1,0 +1,6 @@
+Level 3 completed
+
+Time: 303 seconds
+Coins: 45 collected
+Deaths: 12 times
+

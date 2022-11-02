@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class DeathCounter : MonoBehaviour
 {
+    
     float deathCD = 0.1f;
     public static int deathCount = 0;
     public TextMeshProUGUI deathText;
@@ -18,22 +19,31 @@ public class DeathCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "DeathZone" && Time.time > deathCD)
         {
-            
+
             deathCD = Time.time + 0.1f;
             deathCount++;
+
             hurtSound.Play();
             deathText.text = ("= " + deathCount.ToString());
+
+            if (deathCount % 3 == 0)
+            {
+               
+                gameObject.GetComponent<NNReadModel>().Init();
+
+            }
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Spike" && Time.time > deathCD)
+        if (collision.tag == "Spike" && Time.time > deathCD)
         {
             deathCD = Time.time + 0.1f;
 
@@ -41,6 +51,9 @@ public class DeathCounter : MonoBehaviour
 
             deathCount++;
             deathText.text = ("= " + deathCount.ToString());
+
+
+
         }
     }
 }

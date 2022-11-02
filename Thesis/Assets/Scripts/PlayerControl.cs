@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (Input.GetKey("space") || Input.GetKey("w") || Input.GetKey("up"))
             {
-                _rigidbody.velocity = new Vector2(0, 0);
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
                 _rigidbody.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
             }
         } 

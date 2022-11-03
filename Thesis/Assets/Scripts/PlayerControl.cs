@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     private float xMovement;
     public float PlayerSpeed = 6;
     public float JumpForce = 14;
-    bool grounded = false;
+    [SerializeField]bool grounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -62,11 +62,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
-        {
-            
-            grounded = true;
-        }
+        
         if (collision.gameObject.tag == "Spike")
         {
             Player.transform.position = StartingPos.transform.position;
@@ -75,9 +71,17 @@ public class PlayerControl : MonoBehaviour
         }
         if (collision.gameObject.tag == "Coin")
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
         
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+
+            grounded = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

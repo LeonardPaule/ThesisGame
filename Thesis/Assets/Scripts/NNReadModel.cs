@@ -18,72 +18,43 @@ using Random = System.Random;
 
 public class NNReadModel : MonoBehaviour
 {
-   
-    public static string tempo;
-
-    private void Start()
-    {
-    
-    }
+    public static int tempo;
     public void Init()
     {
         String input = "", path = "";
 
 
         // Request for neural network model file directory
-
-        Debug.Log("[INPUT] Please enter the file path of Neural Network Model (TXT File)");
-        Debug.Log("[SAMPLE] \"C:\\Users\\Kei\\Downloads\\Model_4-32-32-3.txt\"");
-
         path = "Model_4-32-32-3.txt";
-
-
 
         // Load neural network model
         int[] modelStructure = GetStructure(path);
-        GameNeuralNetwork model = new GameNeuralNetwork(modelStructure);
+        GameNeuralNetwork model = new(modelStructure);
         model.LoadModel(path);
         model.NetworkDetails();
 
-        // Request for input or exit
-        Debug.Log("\n[STATUS] Model Testing...\n");
-
         {
-            int exit = 0;
+            List<double> inputFeatures = new();
 
-            List<double> inputFeatures = new List<double>();
-            Debug.Log("[INPUT] Enter 4 numbers separated by spaces for time, coin, death, and level respectively");
-            Debug.Log("[INPUT] (Enter 'EXIT' to end model testing)");
-            Debug.Log("[SAMPLE] 105 44 1 0");
+            int time = PassIt.finalTime;
+            int score = PassIt.finalCoins;
+            int death = PassIt.finalDeaths;
+            int level = PassIt.level;
+            input = time + " " + score + " " + (death + 1) + " " + level;
 
-            input = "105 44 1 0";
-
-            if (input.ToUpper().Equals("EXIT"))
-            {
-                // Close program
-                Debug.Log("\n[STATUS] Closing program...");
-
-            }
-            else if (input.Split(' ').Length == 4)
+            print("Inputs: " + input);
+            if (input.Split(' ').Length == 4)
             {
                 int predTempo = 0;
                 double featureMax = model.GetValue("MAX");
                 double featureMin = model.GetValue("MIN");
-                tempo = "";
-                List<List<double>> tempPredict = new List<List<double>>();
-                List<List<double>> prediction = new List<List<double>>();
+
+                List<List<double>> tempPredict = new();
+                List<List<double>> prediction = new();
                 List<String> tempInput = input.Split(' ').ToList();
 
                 // Check if input is numeric
-                try
-                {
-                    inputFeatures = tempInput.Select(x => double.Parse(x)).ToList();
-                }
-                catch (Exception e)
-                {
-                    Debug.Log("\n[ERROR] Value/s is/are not numeric!\n");
-
-                }
+                inputFeatures = tempInput.Select(x => double.Parse(x)).ToList();
 
                 // Normalize input values
                 for (int i = 0; i < inputFeatures.Count; i++)
@@ -97,22 +68,22 @@ public class NNReadModel : MonoBehaviour
                 tempPredict.Add(inputFeatures);
                 prediction = model.Predict(tempPredict);
                 predTempo = ArgMax(prediction[0]);
-                Debug.Log("\n[OUTPUT] " + string.Join(",", prediction[0]));
+
+                Debug.Log("Outputs: " + string.Join(",", prediction[0]));
+
                 // Change prediction to equivalent tempo
                 if (predTempo == 0)
                 {
-                    tempo = "slow";
+                    tempo = 0;
                 }
                 else if (predTempo == 1)
                 {
-                    tempo = "medium";
+                    tempo = 1;
                 }
                 else if (predTempo == 2)
                 {
-                    tempo = "fast";
+                    tempo = 2;
                 }
-
-                Debug.Log("\n[OUTPUT] Change tempo to " + tempo + "\n");
             }
             else
             {
@@ -146,7 +117,7 @@ public class NNReadModel : MonoBehaviour
             int.TryParse(nodes[i], out neuralNodes[i]);
         }
 
-        Debug.Log("\n[OUTPUT] Model Structure: " + string.Join(", ", neuralNodes) + "\n");
+        Debug.Log("[OUTPUT] Model Structure: " + string.Join(", ", neuralNodes) + "\n");
 
         return neuralNodes;
     }
@@ -154,7 +125,7 @@ public class NNReadModel : MonoBehaviour
     {
         int index = 0;
         double prediction = double.MinValue;
-        List<double> predictions = new List<double>();
+        List<double> predictions = new();
 
         foreach (var i in input)
         {
@@ -189,12 +160,12 @@ class GameNeuralNetwork
 
         for (int i = 0; i < layerArray.Length - 1; i++)
         {
-            List<List<double>> tempWW = new List<List<double>>();
+            List<List<double>> tempWW = new();
             if (i == (weights.Length - 1))
             {
                 for (int a = 0; a < layerArray[i] + 1; a++)
                 {
-                    List<double> tempW = new List<double>();
+                    List<double> tempW = new();
                     for (int b = 0; b < layerArray[i + 1]; b++)
                     {
                         double w = (rand.NextDouble()) * (rand.Next(0, 2) * 2 - 1);
@@ -207,7 +178,7 @@ class GameNeuralNetwork
             {
                 for (int x = 0; x < layerArray[i] + 1; x++)
                 {
-                    List<double> tempW = new List<double>();
+                    List<double> tempW = new();
                     for (int y = 0; y < layerArray[i + 1] + 1; y++)
                     {
                         double w = (rand.NextDouble()) * (rand.Next(0, 2) * 2 - 1);
@@ -232,11 +203,11 @@ class GameNeuralNetwork
     }
     public void NetworkDetails()
     {
-        String networkWeights = "", networkWeight = "";
+        String networkWeights = "";
 
         foreach (var weight in weights)
         {
-            networkWeight = "";
+            string networkWeight = "";
             foreach (var w in weight)
             {
                 String tempWeight = "";
@@ -250,16 +221,16 @@ class GameNeuralNetwork
             networkWeights += "\nInput Weights for Neural Layer: [\n" + networkWeight + "] ";
         }
 
-        Debug.Log("Model Weights: " + networkWeights);
-        Debug.Log("");
+        //Debug.Log("Model Weights: " + networkWeights);
+
     }
     private List<List<double>> Sigmoid(List<List<double>> input)
     {
-        List<List<double>> output = new List<List<double>>();
+        List<List<double>> output = new();
 
         for (int i = 0; i < input.Count; i++)
         {
-            List<double> tempO = new List<double>();
+            List<double> tempO = new();
             for (int j = 0; j < input[0].Count; j++)
             {
                 tempO.Add(0.0);
@@ -280,7 +251,7 @@ class GameNeuralNetwork
     public List<List<double>> Predict(List<List<double>> featureSet)
     {
         List<List<double>> predictions = featureSet;
-        List<List<double>> dotProduct = new List<List<double>>();
+        List<List<double>> dotProduct = new();
 
         for (int i = 0; i < weights.Length; i++)
         {
@@ -296,7 +267,7 @@ class GameNeuralNetwork
         int cA = A[0].Count;
         int rB = B.Count;
         int cB = B[0].Count;
-        List<List<double>> P = new List<List<double>>();
+        List<List<double>> P = new();
 
         if (cA != rB)
         {
@@ -308,7 +279,7 @@ class GameNeuralNetwork
         {
             for (int i = 0; i < rA; i++)
             {
-                List<double> tempP = new List<double>();
+                List<double> tempP = new();
                 for (int j = 0; j < cB; j++)
                 {
                     tempP.Add(0.0);
@@ -316,13 +287,11 @@ class GameNeuralNetwork
                 P.Add(tempP);
             }
 
-            double temp = 0;
-
             for (int i = 0; i < rA; i++)
             {
                 for (int j = 0; j < cB; j++)
                 {
-                    temp = 0;
+                    double temp = 0;
                     for (int k = 0; k < cA; k++)
                     {
                         temp += A[i][k] * B[k][j];
@@ -338,38 +307,37 @@ class GameNeuralNetwork
     {
         try
         {
-            using (StreamReader sr = File.OpenText("C:\\Users\\Paule\\Documents\\Leonard Eli Paule - Files\\School\\Git\\ThesisGame\\Thesis\\Assets\\Scripts\\Model_4-32-32-3.txt"))
-            {
-                
-                string s = String.Empty;
-                int i = 0, j = 0;
-                double min = 0.0, max = 0.0;
 
-                while ((s = sr.ReadLine()) != null)
+            Debug.Log("TextFile location: " + Application.dataPath + "/Scripts/Model_4-32-32-3.txt");
+            using StreamReader sr = File.OpenText(Application.dataPath + "/Scripts/" + path);
+
+            string s = String.Empty;
+            int i = 0, j = 0;
+
+            while ((s = sr.ReadLine()) != null)
+            {
+                if (s.Split(' ')[0].Equals("layer"))
                 {
-                    if (s.Split(' ')[0].Equals("layer"))
-                    {
-                        int.TryParse(s.Split(' ')[1], out i);
-                        j = 0;
-                    }
-                    else if (s.Split(' ')[0].Equals("max"))
-                    {
-                        double.TryParse(s.Split(' ')[1], out featureMax);
-                    }
-                    else if (s.Split(' ')[0].Equals("min"))
-                    {
-                        double.TryParse(s.Split(' ')[1], out featureMin);
-                    }
-                    else
-                    {
-                        List<String> temp = s.Split(',').ToList();
-                        weights[i][j] = temp.Select(x => double.Parse(x)).ToList();
-                        j++;
-                    }
+                    int.TryParse(s.Split(' ')[1], out i);
+                    j = 0;
+                }
+                else if (s.Split(' ')[0].Equals("max"))
+                {
+                    double.TryParse(s.Split(' ')[1], out featureMax);
+                }
+                else if (s.Split(' ')[0].Equals("min"))
+                {
+                    double.TryParse(s.Split(' ')[1], out featureMin);
+                }
+                else
+                {
+                    List<String> temp = s.Split(',').ToList();
+                    weights[i][j] = temp.Select(x => double.Parse(x)).ToList();
+                    j++;
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Debug.Log("\n[ERROR] TXT File does not follow required content format!\n");
         }

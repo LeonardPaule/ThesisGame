@@ -20,7 +20,22 @@ public class PassIt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        finalTime = StopWatch.finalTime;
+        finalCoins = CoinCounter.score;
+        finalDeaths = DeathCounter.deathCount;
+
+        if (sceneManager == 3)
+        {
+            level = 1;
+        }
+        else if (sceneManager == 4)
+        {
+            level = 2;
+        }
+        else if (sceneManager == 5)
+        {
+            level = 3;
+        }
     }
     private void Awake()
     {
@@ -31,20 +46,7 @@ public class PassIt : MonoBehaviour
     {
         if (collision.gameObject.tag == "Character")
         {
-            finalTime = StopWatch.finalTime;
-            finalCoins = CoinCounter.score;
-            finalDeaths = DeathCounter.deathCount;
-
-            if (sceneManager == 3)
-            {
-                level = 1;
-            }else if(sceneManager == 4)
-            {
-                level = 2;
-            }else if(sceneManager == 5)
-            {
-                level = 3;
-            }
+           
             SceneManager.LoadScene(6);
 
         }

@@ -308,8 +308,8 @@ class GameNeuralNetwork
         try
         {
 
-            Debug.Log("TextFile location: " + Application.dataPath + "/Scripts/Model_4-32-32-3.txt");
-            using StreamReader sr = File.OpenText(Application.dataPath + "/Scripts/" + path);
+            Debug.Log("TextFile location: " + Application.dataPath + "/Resources/Model_4-32-32-3.txt");
+            using StreamReader sr = File.OpenText(Application.dataPath + "/Resources/" + path);
 
             string s = String.Empty;
             int i = 0, j = 0;

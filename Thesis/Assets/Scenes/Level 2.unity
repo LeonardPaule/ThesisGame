@@ -705,7 +705,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 2.1679246, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1031,9 +1031,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2aecb1997f9ef0544950a99aafa1de5d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 59834ec695aa1984fac67df67d1a8eee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2874,6 +2874,7 @@ MonoBehaviour:
   StartingPos: {fileID: 1068320724}
   PlayerSpeed: 8
   JumpForce: 15
+  grounded: 0
 --- !u!50 &433420043
 Rigidbody2D:
   serializedVersion: 4
@@ -3374,7 +3375,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ce7f62bac60b5ac4f9a3ec1bd0e4354e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -11339,9 +11340,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 611170bbb0a9f6e459cffd1ebb38c7b7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8b4b1d540d9625d468681740efc0b4eb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

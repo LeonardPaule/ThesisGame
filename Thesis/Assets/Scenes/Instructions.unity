@@ -886,7 +886,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "movement: a,s,d / left,right arrow\nJump: w / up arrow / space key\nobjectives:\n\t-
+  m_text: "movement: a,d / left,right arrow\nJump: w / up arrow / space key\nobjectives:\n\t-
     collect coins for points\n\t- avoid contact with spikes\n\t- avoid falling from
     the stage\n\t- get the star to clear the stage"
   m_isRightToLeft: 0

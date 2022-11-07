@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 693184956}
   - component: {fileID: 693184955}
   m_Layer: 5
-  m_Name: Instructions
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: INSTRUCTIONS
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e205d8b3ed6a344d9373f7045bfcd99, type: 2}
   m_sharedMaterial: {fileID: 7222928489292837985, guid: 5e205d8b3ed6a344d9373f7045bfcd99, type: 2}
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.55
+  m_fontSize: 1.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -886,9 +886,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "movement: a,d / left,right arrow\nJump: w / up arrow / space key\nobjectives:\n\t-
-    collect coins for points\n\t- avoid contact with spikes\n\t- avoid falling from
-    the stage\n\t- get the star to clear the stage"
+  m_text: "Made with: Unity 2021.3.8f1\t\n\nDevelopers:\n\nDanque, Ralph\nMallabo,
+    Philip\nPaule, leonard\nRomero, Chelsea"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e205d8b3ed6a344d9373f7045bfcd99, type: 2}
   m_sharedMaterial: {fileID: 7222928489292837985, guid: 5e205d8b3ed6a344d9373f7045bfcd99, type: 2}
@@ -915,7 +914,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
+  m_fontSize: 0.6
   m_fontSizeBase: 0.8
   m_fontWeight: 400
   m_enableAutoSizing: 1
